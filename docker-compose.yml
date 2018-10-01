@@ -9,6 +9,7 @@ services:
       - ./conf/mariadb-conf.d:/etc/mysql/conf.d
     ports:
       - "3307:3306" #mariadb-port
+    restart: always
     container_name: mariadb
 
   redis-cache:
@@ -20,6 +21,7 @@ services:
     command: ["redis-server","/etc/conf.d/redis.conf"]
 
     container_name: redis-cache
+    restart: always
 
   redis-queue:
     image: redis:alpine
@@ -30,6 +32,7 @@ services:
     command: ["redis-server","/etc/conf.d/redis.conf"]
 
     container_name: redis-queue
+    restart: always
 
   redis-socketio:
     image: redis:alpine
@@ -40,6 +43,7 @@ services:
     command: ["redis-server","/etc/conf.d/redis.conf"]
 
     container_name: redis-socketio
+    restart: always
 
 
   frappe:
@@ -66,3 +70,4 @@ services:
       - redis-queue
       - redis-socketio
     container_name: frappe
+    restart: always
